@@ -1,14 +1,15 @@
-const passport = require('passport');
-const { Strategy, ExtractJwt } = require('passport-jwt');
-const config = require('config');
-const User = require('../models/User');
+const passport = require("passport");
+const { Strategy, ExtractJwt } = require("passport-jwt");
+const config = require("config");
+const User = require("../models/User");
 
-const secretOrKey = config.get('JWT_SECRET');
+// const secretOrKey = config.get('JWT_SECRET');
+const secretOrKey = process.env.JWT_SECRET;
 
 // JWT strategy
 const jwtLogin = new Strategy(
   {
-    jwtFromRequest: ExtractJwt.fromHeader('x-auth-token'),
+    jwtFromRequest: ExtractJwt.fromHeader("x-auth-token"),
     secretOrKey: secretOrKey,
   },
   async (payload, done) => {
@@ -24,7 +25,7 @@ const jwtLogin = new Strategy(
     } catch (err) {
       done(err, false);
     }
-  },
+  }
 );
 
 passport.use(jwtLogin);

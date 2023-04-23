@@ -2,8 +2,9 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const config = require("config");
 const User = require("../models/User");
-
-const BACKEND_URL = config.get("BACKEND_URL");
+require("dotenv").config();
+// const BACKEND_URL = config.get("BACKEND_URL");
+const BACKEND_URL = process.env.BACKEND_URL;
 
 /* =================== Handeling Infinite run: Start ===================  */
 // passport.serializeUser((user, done) => {
@@ -16,13 +17,14 @@ const BACKEND_URL = config.get("BACKEND_URL");
 //     done(null, user);
 //   });
 // });
-
 // For Google
 passport.use(
   new GoogleStrategy(
     {
-      clientID: config.get("GOOGLE_CLIENT_ID"),
-      clientSecret: config.get("GOOGLE_CLIENT_SECRET"),
+      // clientID: config.get("GOOGLE_CLIENT_ID"),
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      // clientSecret: config.get("GOOGLE_CLIENT_SECRET"),
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       // callbackURL: "/api/auth/google/callback",
       callbackURL: `${BACKEND_URL}/api/auth/google/callback`,
       proxy: true,

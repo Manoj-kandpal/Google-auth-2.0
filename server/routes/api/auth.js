@@ -4,12 +4,14 @@ const config = require('config');
 const router = express.Router();
 
 const auth = require('../../middleware/auth');
-const frontendUrl = config.get('FRONTEND_URL');
+// const frontendUrl = config.get('FRONTEND_URL');
+const frontendUrl = process.env.FRONTEND_URL;
 
 router.get("/", (req, res) => {
     res.status(200).json({
-        googleClientID: config.get('GOOGLE_CLIENT_ID'),
-        // googleCLientSecret: config.get('GOOGLE_CLIENT_SECRET'),
+      // googleClientID: config.get('GOOGLE_CLIENT_ID'),
+      googleClientID: process.env.GOOGLE_CLIENT_ID,
+      // googleCLientSecret: config.get('GOOGLE_CLIENT_SECRET'),
     });
 });
 
