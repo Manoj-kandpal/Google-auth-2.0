@@ -25,7 +25,7 @@ app.use(
 );
 
 // Connect to Database
-connectDB();
+// connectDB();
 
 // Init Middleware
 app.use(express.json({ extended: true }));
@@ -51,4 +51,10 @@ app.use("/api/user", require("./routes/api/user"));
 
 const PORT = config.get("PORT") || 5000;
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+});
