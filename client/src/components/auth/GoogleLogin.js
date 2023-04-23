@@ -5,7 +5,7 @@ const GoogleLogin = () => {
   const loginWithGoogle = async (ev) => {
     ev.preventDefault();
     window.open(
-      "https://light-erin-leggings.cyclic.app/api/auth/google",
+      "https://dull-pear-tortoise-coat.cyclic.app/api/auth/google",
       "_self"
     );
     // const res = await api.get('/auth/google', config);
